@@ -1,5 +1,6 @@
 package study;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -29,5 +30,30 @@ public class StringTest {
         String when = given.substring(1, 4);
 
         assertThat(when).isEqualTo("1,2");
+    }
+
+    @Test
+    public void testException() {
+        assertThatThrownBy(() -> { throw new Exception("boom!"); }).isInstanceOf(Exception.class)
+                .hasMessageContaining("boom");
+    }
+    @Test
+    @DisplayName("charAt 테스트")
+    void charAt() {
+        String given = "abc";
+
+        char a = given.charAt(0);
+        char b = given.charAt(1);
+        char c = given.charAt(2);
+
+        assertThat(a).isEqualTo('a');
+        assertThat(b).isEqualTo('b');
+        assertThat(c).isEqualTo('c');
+
+        assertThatThrownBy(() -> {
+            given.charAt(-1);
+        })
+        .isInstanceOf(StringIndexOutOfBoundsException.class)
+        .hasMessageContaining("String index out of range: -1");
     }
 }
