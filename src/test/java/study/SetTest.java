@@ -1,7 +1,12 @@
 package study;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.*;
 
 public class SetTest {
@@ -22,4 +27,10 @@ public class SetTest {
         assertThat(numbers.size()).isEqualTo(3);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3})
+    @DisplayName("요구사항 2")
+    void contains(int i) {
+        assertTrue(numbers.contains(i));
+    }
 }
